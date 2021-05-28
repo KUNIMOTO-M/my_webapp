@@ -13,7 +13,12 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
-
+  config.log_level = :debug
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  end
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
@@ -38,8 +43,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 80 }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
+  config.web_console.whitelisted_ips = '172.23.0.1'
 
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise

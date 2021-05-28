@@ -1,0 +1,22 @@
+<div class="posts">
+  <div class="title_container"> 
+    <h1 class="content">掲示板</h1>
+  </div> 
+  <%= render "shared/notice_form"%>
+</div>
+
+  <div class="notice_creater_container">
+    <div class="notice_creater">
+    <%= form_with model: @notice do |f| %>
+    
+    <%= f.text_field :notice_title,placeholder: "タイトル",class: "post_title",size: 43 %>
+
+    <%= f.text_area :notice_body, placeholder: "募集内容",class: "form" %>
+
+    <%= f.label :募集地域 %>
+    <%= f.select :area, Notice.areas.keys, {}, {class: 'hoge'} %>
+
+    <%= f.submit"投稿", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+  </div>

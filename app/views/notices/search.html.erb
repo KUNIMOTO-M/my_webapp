@@ -1,0 +1,28 @@
+<div class="microposts">
+  <div class="title_container"> 
+      <h1 class="content">掲示板検索</h1>
+  </div> 
+
+  <div class="notice_creater_container">
+    <div class="notice_creater">
+      検索項目
+      <%= link_to "掲示板", search_notices_path %>
+      <%= link_to "ユーザー", search_users_path %>
+      <%= link_to "マイクロポスト", search_microposts_path %>
+      <%= form_with url:'/notices/search', method: :get do |f| %>
+      
+      <%= f.label :募集地域 %>
+      <%= f.select :area, Notice.areas.keys, {}, {class: 'hoge'} %>
+
+      <%= f.submit"検索", class: "btn btn-primary" %>
+      <% end %>
+
+      <%= form_tag(search_notices_path, :method => "get") do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag"キーワード検索", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= render "shared/notice_form"%>
+</div>

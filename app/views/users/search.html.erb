@@ -1,0 +1,60 @@
+<div class="microposts">
+  <div class="title_container"> 
+    <h1 class="content">ユーザー検索</h1>
+  </div> 
+
+  <div class="notice_creater_container">
+    <div class="notice_creater">
+      検索項目
+      <%= link_to "掲示板", search_notices_path %>
+      <%= link_to "ユーザー", search_users_path %>
+      <%= link_to "マイクロポスト", search_microposts_path %>
+      <%= form_with url:'/users/search', method: :get do |f| %>
+      
+      <%= f.label :登録地域 %>
+      <%= f.select :area, User.areas.keys, {}, {class: 'hoge'} %>
+
+      <%= f.submit"検索", class: "btn btn-primary" %>
+      <% end %>
+
+      <%= form_tag(search_users_path, :method => "get") do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag"キーワード検索", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="notice_container">
+      <% if @users  %>
+        <%  @users.each do |user| %>
+          <%=  link_to "/users/#{user.id}" do %>
+          <div class="notice_container_item">
+            <div class="notice_container_item2">
+              <div class="notice_container_item_image">
+                <div class="user_image">
+                  <% if user.image? %>                                                              
+                    <%= image_tag user.image.url(:thumb100), class: "image" %>
+                  <% else %>
+                    <img src="/assets/default.png" class="image" alt="ユーザーアイコン" >
+                  <% end %>
+                </div>
+              </div>
+              <div class="microposts_contents">
+                <div class="microposts_info">
+                  <div class="microposts_info_user">
+                    <div class="micropost_user">
+                      <%= user.name%>
+                    </div>
+                  </div>
+                </div>
+                <div class="micropost_content">
+                  <%= user.introduction %>
+                </div>
+              </div>
+          </div>
+          </div>
+        <% end %>
+        <% end %>
+      <% end %>
+    </div>
+</div>

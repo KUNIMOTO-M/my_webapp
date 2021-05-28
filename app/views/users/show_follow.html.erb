@@ -1,0 +1,50 @@
+<div class="microposts">
+  <div class="title_container ccc">
+    <h1 class="content"><%=@user.name%></h1>
+    <%= link_to "プロフィールに戻る", @user, {class:"back_profile"} %>
+  </div>
+
+  <div class="follow_container">
+    <div class="follow_links">
+      <div class="following_link follow_set">
+        <%= link_to "フォロー中", following_user_path(@user), {class: "follow_link_set"} %>
+      </div>
+      <div class="followers_link follow_set">
+        <%= link_to "フォロワー", followers_user_path(@user), {class: "follow_link_set"}  %>
+      </div>
+    </div>
+
+    <div class="notice_container">
+      <% if @users.any? %>
+        <%  @users.each do |user| %>
+          <%=  link_to "/users/#{user.id}" do %>
+          <div class="notice_container_item">
+            <div class="notice_container_item2">
+              <div class="notice_container_item_image">
+                <div class="user_image">
+                  <% if user.image? %>                                                              
+                    <%= image_tag user.image.url(:thumb100), class: "image" %>
+                  <% else %>
+                    <img src="/assets/default.png" class="image" alt="ユーザーアイコン" >
+                  <% end %>
+                </div>
+              </div>
+              <div class="microposts_contents">
+                <div class="microposts_info">
+                  <div class="microposts_info_user">
+                    <div class="micropost_user">
+                      <%= user.name%>
+                    </div>
+                  </div>
+                </div>
+                <div class="micropost_content">
+                  <%= user.introduction %>
+                </div>
+              </div>
+          </div>
+          </div>
+        <% end %>
+        <% end %>
+        <%= will_paginate%>
+      <% end %>
+    </div>
