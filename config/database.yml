@@ -4,17 +4,19 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
   password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
-  host: db
 
 development:
   <<: *default
+  host: db
   database: webapp_development
 
 test:
   <<: *default
   database: webapp_test
+  host: db
+  
 production:
   <<: *default
   database: portfolio_production
-  username: portfolio
-  password: <%= ENV['PORTFOLIO_DATABASE_PASSWORD'] %>
+  password: 31415masarumosuX@
+  host: localhost
