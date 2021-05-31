@@ -2,21 +2,24 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+  host: db
+
 
 development:
   <<: *default
-  host: db
   database: webapp_development
+  username: root
+  password: <%= ENV.fetch('MYSQL_ROOT_PASSWORD', 'db_root_password') %>
 
 test:
   <<: *default
   database: webapp_test
-  host: db
-  
+  username: root
+  password: <%= ENV.fetch('MYSQL_ROOT_PASSWORD', 'db_root_password') %>
+
 production:
   <<: *default
   database: portfolio_production
+  username: root
   password: 31415masarumosuX@
   host: localhost

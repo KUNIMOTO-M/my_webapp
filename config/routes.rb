@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get  '/about',    to: 'static_pages#about'
   get  '/help',     to: 'static_pages#help'
-  
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
   resources :microposts,          only: [:create, :destroy] do
     collection do
