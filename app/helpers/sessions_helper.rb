@@ -1,7 +1,3 @@
 module SessionsHelper
 
-
-    
-    
-    
 end
