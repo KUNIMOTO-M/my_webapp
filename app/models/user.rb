@@ -19,6 +19,7 @@ class User < ApplicationRecord
 	has_many :fileas,	dependent: :destroy
   has_many :entries, dependent: :destroy
 	validates :introduction, length: {maximum: 160}
+	validates :name, presence: true
 	#プロフィールのプルダウンメニュー
   enum area:{
     未登録:0,
