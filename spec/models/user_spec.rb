@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-      @user = User.new(
-        name:  "aaaaa",
-        email: "sample@sample.com",
-        password: "314159",
-      )
+      @user = build(:user)
   end
 
     describe "sign up" do
