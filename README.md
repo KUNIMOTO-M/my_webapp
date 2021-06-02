@@ -80,3 +80,7 @@ pdf・画像のアップロード
 
 #改良予定
 * 掲示板デザインの変更
+
+# テストユーザー
+email renirya@cream.pink
+pass  testuser
