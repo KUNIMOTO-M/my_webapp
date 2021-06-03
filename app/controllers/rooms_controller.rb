@@ -43,4 +43,6 @@ class RoomsController < ApplicationController
     @currentUserEntry=Entry.where(user_id: current_user.id)
 
   end
+  private
+  
 end

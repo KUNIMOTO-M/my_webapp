@@ -1,6 +1,6 @@
 module RoomsHelper
 
-  def room
+def room
     if @user.id == current_user.id
     else
         @currentUserEntry.each do |cu|
@@ -17,6 +17,6 @@ module RoomsHelper
             @entry = Entry.new
         end
     end
-  end
+end
 
 end
