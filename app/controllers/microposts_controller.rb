@@ -24,12 +24,14 @@ class MicropostsController < ApplicationController
     if params[:search]
       if !params[:search].blank?
         @microposts = Micropost.where("content LIKE ?", "%#{params[:search]}%")
+        @microposts = @microposts.paginate(page: params[:page])
       end
     else
     end
   end
 
 private
+
     def micropost_params
       params.require(:micropost).permit(:content)
     end

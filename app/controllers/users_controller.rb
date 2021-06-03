@@ -7,14 +7,16 @@ class UsersController < ApplicationController
     @notices = @user.notices.paginate(page: params[:page])
   end
 
-  def show2
+  def show_microposts
     profile_show
     @microposts = @user.microposts.paginate(page: params[:page])
+    render :show
   end
 
-  def show3
+  def show_files
     profile_show
     @files = @user.fileas
+    render :show
   end
 
 
@@ -79,6 +81,14 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user == @user
+  end
+
+  def profile_show
+    @user = User.find_by(id: params[:id])
+    #プロフィール画面で掲示板投稿を表示
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    room
   end
   
 end

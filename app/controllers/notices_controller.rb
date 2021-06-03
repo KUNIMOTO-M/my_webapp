@@ -24,9 +24,11 @@ before_action :correct_user,   only: :destroy
 	def search
 		if params[:area]
 			@notices = Notice.where(area: params[:area])
+			@notices = @notices.paginate(page: params[:page])
 		elsif params[:search]
 			if !params[:search].blank?
 				@notices = Notice.where("notice_title LIKE ? OR notice_body LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+				@notices = @notices.paginate(page: params[:page])
 			end
 		else
 		end

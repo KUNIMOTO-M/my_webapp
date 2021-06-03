@@ -19,11 +19,4 @@ module RoomsHelper
     end
   end
 
-  def profile_show
-    @user = User.find_by(id: params[:id])
-    #プロフィール画面で掲示板投稿を表示
-    @currentUserEntry=Entry.where(user_id: current_user.id)
-    @userEntry=Entry.where(user_id: @user.id)
-    room
-  end
 end

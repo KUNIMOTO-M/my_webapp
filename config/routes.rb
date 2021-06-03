@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     member do
       get 'following'
       get 'followers'
-      get 'show2'
-      get 'show3'
+      get 'show_microposts'
+      get 'show_files'
     end
   end
 

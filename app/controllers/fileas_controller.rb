@@ -8,10 +8,10 @@ class FileasController < ApplicationController
     @file = current_user.fileas.build(filea_params)
     if @file.save
       flash[:success] = "投稿しました"
-			redirect_to "/users/#{current_user.id}/show3"
+			redirect_to show_files_user_path(current_user)
     else
       flash[:danger] = "投稿できませんでした"
-			redirect_to "/users/#{current_user.id}/show3"
+			redirect_to show_files_user_path(current_user)
     end
   end
 
@@ -19,7 +19,7 @@ class FileasController < ApplicationController
     @file = current_user.fileas.find_by(id: params[:id])
 		@file.destroy
 		flash[:success] = "投稿を削除しました"
-		redirect_to "/users/#{current_user.id}/show3"
+		redirect_to show_files_user_path(current_user)
   end
 
   private
