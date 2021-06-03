@@ -96,4 +96,50 @@ RSpec.describe User, type: :request do
       end
     end
 
+    describe "プロフィールページを編集" do
+      before do
+        user.confirm
+        sign_in user
+      end
+      context "パラメーターが存在する場合" do
+        it "名前の更新に成功すること" do
+          put user_path(user), params: { user:{ name: '新しい名前'} }
+          expect(user.reload.name).not_to eq 'テスト'
+        end
+
+        it "imageの更新に成功すること" do
+          put user_path(user), params: { user:{  image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/news-article.jpg'))}}
+          expect(user.reload.image).to_not eq nil
+        end
+
+        it "areaを更新に成功すること" do
+          put user_path(user), params: { user:{ area: '北海道'}}
+          expect(user.reload.area).to eq '北海道'
+        end
+
+        it "自己紹介の更新に成功すること" do
+          put user_path(user), params: { user:{ introduction: '初めまして。こんにちは。'} }
+          expect(user.reload.introduction).to eq '初めまして。こんにちは。'
+        end
+      end
+
+      context "パラメーターが空の場合" do
+        it "名前の更新に失敗すること" do
+          put user_path(user), params: { user:{ name: ''} }
+          expect(user.reload.name).to eq 'テスト'
+        end
+
+        it "imageを更新に成功すること" do
+          put user_path(user), params: { user:{  image: ''}}
+          expect(response).to redirect_to user_path(user)
+        end
+
+        it "自己紹介の更新に成功すること" do
+          put user_path(user), params: { user:{ introduction: ''} }
+          expect(user.reload.introduction).to eq ''
+        end
+      end
+
+    end
+
 end
