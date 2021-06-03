@@ -7,15 +7,15 @@
 <div class="profile_link_wrapper">
 
   <div class="profile_link_item">
-    <%= link_to "掲示板", "/users/#{@user.id}",{class: "link_item_position"}%>
+    <%= link_to "掲示板", user_path(@user),{class: "link_item_position"}%>
   </div>
 
   <div class="profile_link_item">
-    <%= link_to "マイクロポスト", "/users/#{@user.id}/show2",{class: "link_item_position"}%>
+    <%= link_to "マイクロポスト", show_microposts_user_path(@user),{class: "link_item_position"}%>
   </div>
 
   <div class="profile_link_item">
-    <%= link_to "メディア", "/users/#{@user.id}/show3",{class: "link_item_position"}%>
+    <%= link_to "メディア", show_files_user_path(@user),{class: "link_item_position"}%>
   </div>
 
 </div>  

@@ -9,8 +9,14 @@
           <%= render "shared/user_image2" %>  
           <%= render "userinfo_profile" %>
       <%= render "link_profile" %>
-      <%= render "notice_profile" %>
-     </div>
+      <% if action_name == "show"%>
+        <%= render "notice_profile" %>
+      <% elsif action_name == "show_microposts"%>
+        <%= render "shared/micropost_form"  %>
+      <% elsif action_name  == "show_files" %>
+        <%= render "files_profile"%>
+      <%end%>
+    </div>
     </div>
   </div>
 </div>
