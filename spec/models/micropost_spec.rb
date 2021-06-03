@@ -5,21 +5,37 @@ let(:user){ create(:user) }
 let(:micropost_params) { attributes_for(:micropost) }
 let(:invalid_micropost_params) { attributes_for(:micropost, content: "") }
 
-context 'パラメーターが妥当な場合' do
-  it "contentが存在する成功する" do
-  # expect do
-      #post microposts_path, params: {content: micropost_params}
-    # end.to change(Micropost, :count).by 1
+describe "ログインしている場合" do
+  before do
+    user.confirm
+    sign_in user
+  end
+  context 'パラメーターが妥当な場合' do
+    it "contentが存在する時成功すること" do
+      expect do
+          post microposts_path, params: {micropost: micropost_params}
+      end.to change(Micropost, :count).by 1
+    end
+    it "micropostが成功した時homeに表示させること" do
+      post microposts_path, params: {micropost: micropost_params}
+      expect(Micropost.last.content).to include("初めまして")
+    end
+
+  end
+  context 'パラメーターが妥当でない場合' do
+    it "contentが存在しない時失敗すること" do
+      expect do
+      post microposts_path, params: {micropost: invalid_micropost_params}
+      end.to change(Micropost, :count).by 0
+    end
   end
 end
-# 名がなければ無効な状態であること
-it "is invalid without a first name"
-# 姓がなければ無効な状態であること
-it "is invalid without a last name"
-# メールアドレスがなければ無効な状態であること
-it "is invalid without an email address"
-# 重複したメールアドレスなら無効な状態であること
-it "is invalid with a duplicate email address"
-# ユーザーのフルネームを文字列として返す
-it "returns a user's full name as a string"
+
+describe "ログインしていない場合" do
+  it "ログインしていない場合失敗させること" do 
+    expect do
+      post microposts_path, params: {micropost: micropost_params}
+      end.to change(Micropost, :count).by 0
+  end
 end
+
