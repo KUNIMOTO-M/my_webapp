@@ -45,7 +45,7 @@ RSpec.describe User, type: :request do
       it "returns a user's full name as a string"
     end
 
-    describe 'POST #create' do
+    describe 'actionmaierテスト' do
       before do
         ActionMailer::Base.deliveries.clear
       end
@@ -95,4 +95,5 @@ RSpec.describe User, type: :request do
         end
       end
     end
+
 end
