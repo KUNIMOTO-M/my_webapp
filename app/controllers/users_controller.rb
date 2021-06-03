@@ -90,5 +90,4 @@ class UsersController < ApplicationController
     @userEntry=Entry.where(user_id: @user.id)
     room
   end
-  
 end
