@@ -35,7 +35,8 @@ describe "ログインしていない場合" do
   it "ログインしていない場合失敗させること" do 
     expect do
       post microposts_path, params: {micropost: micropost_params}
-      end.to change(Micropost, :count).by 0
+    end.to change(Micropost, :count).by 0
   end
+end
 end
 
