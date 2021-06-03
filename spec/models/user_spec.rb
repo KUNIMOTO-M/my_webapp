@@ -103,8 +103,9 @@ RSpec.describe User, type: :request do
       end
       context "パラメーターが存在する場合" do
         it "名前の更新に成功すること" do
+          user_name = user.name
           put user_path(user), params: { user:{ name: '新しい名前'} }
-          expect(user.reload.name).not_to eq 'テスト'
+          expect(user.reload.name).not_to eq "#{user_name}"
         end
 
         it "imageの更新に成功すること" do
@@ -125,8 +126,9 @@ RSpec.describe User, type: :request do
 
       context "パラメーターが空の場合" do
         it "名前の更新に失敗すること" do
+          user_name = user.name
           put user_path(user), params: { user:{ name: ''} }
-          expect(user.reload.name).to eq 'テスト'
+          expect(user.reload.name).to eq "#{user_name}"
         end
 
         it "imageを更新に成功すること" do
