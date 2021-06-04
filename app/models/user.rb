@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
 				 :confirmable, :omniauthable, omniauth_providers:[:twitter,:facebook]
 	mount_uploader :image, ImageUploader
+	mount_uploader :background_image, ImageUploader
 	has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
 																	dependent:   :destroy

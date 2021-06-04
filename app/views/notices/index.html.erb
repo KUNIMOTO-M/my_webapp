@@ -1,22 +1,35 @@
-<div class="posts">
+<div class="posts-c">
   <div class="title_container"> 
     <h1 class="content">掲示板</h1>
+    
   </div> 
-  <%= render "shared/notice_form"%>
+  <div class="posts-c-one">
+  <div class="card-group">
+    <% if @notices %>
+      <% @notices.each do |notice| %>
+          <div class="card ">
+          <div class="profile_image_area">
+            <div class="user_image2">
+              <% if notice.user.image? %>                                                              
+                <%= image_tag notice.user.image.url(:thumb), class: "image2" %>
+              <% else %>
+                <img src="/assets/default.png" class="image2" alt="ユーザーアイコン" >
+              <% end %>
+              </div>
+          </div>
+            <div class="card-body">
+              <h4 class="card-title"><%= notice.user.name %></h4>
+              <p class="card-text"><%= notice.notice_title %></p>
+              <%= link_to "詳細", notice_path(notice), {class: "btn btn-primary"} %>
+            </div>
+            </div>
+      <% end %>
+      </div>
+  </div>
+      <div class="pagenate_tag">
+        <%= will_paginate @notices%>
+      </div>
+    <% end %>
 </div>
 
-  <div class="notice_creater_container">
-    <div class="notice_creater">
-    <%= form_with model: @notice do |f| %>
-    
-    <%= f.text_field :notice_title,placeholder: "タイトル",class: "post_title",size: 43 %>
 
-    <%= f.text_area :notice_body, placeholder: "募集内容",class: "form" %>
-
-    <%= f.label :募集地域 %>
-    <%= f.select :area, Notice.areas.keys, {}, {class: 'hoge'} %>
-
-    <%= f.submit"投稿", class: "btn btn-primary" %>
-    <% end %>
-    </div>
-  </div>
