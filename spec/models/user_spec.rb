@@ -39,10 +39,6 @@ RSpec.describe User, type: :request do
       user.valid?
       expect(user.errors[:password]).to include("is too short (minimum is 6 characters)")
       end
-      # 重複したメールアドレスなら無効な状態であること
-      it "is invalid with a duplicate email address" 
-      # ユーザーのフルネームを文字列として返すこと
-      it "returns a user's full name as a string"
     end
 
     describe 'actionmaierテスト' do
