@@ -8,7 +8,7 @@ services:
     command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/webapp
-      - public-data:/webapp/public
+      - public-data:/webapp/public_data
       - tmp-data:/webapp/tmp
       - log-data:/webapp/log
     depends_on:
@@ -23,7 +23,7 @@ services:
     build:
       context: containers/nginx
     volumes:
-      - public-data:/webapp/public
+      - public-data:/webapp/public_data
       - tmp-data:/webapp/tmp
     ports:
       - 80:80
