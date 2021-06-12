@@ -1,4 +1,4 @@
-class NoticesController < ApplicationController
+class Api::V1::NoticesController < ApiController
 before_action :correct_user,   only: :destroy
 
 	def create
@@ -44,9 +44,10 @@ before_action :correct_user,   only: :destroy
 	end
 
 	def index
-		@notices = Notice.paginate(page: params[:page])
+		notices = Notice.joins(:user).select("notices.*,users.*")
 		#同じページに投稿formを作る
 		@notice = Notice.new	
+		render json: notices
 	end
 
 	private

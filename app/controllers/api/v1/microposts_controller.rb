@@ -1,4 +1,4 @@
-class MicropostsController < ApplicationController
+class Api::V1::MicropostsController < ApiController
 
   before_action :correct_user, only: [:destroy] 
 

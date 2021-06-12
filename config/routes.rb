@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
+  root 'home#home'
   devise_for :users
-  root 'static_pages#home'
-  get  '/about',    to: 'static_pages#about'
-  get  '/help',     to: 'static_pages#help'
+  
+  namespace 'api', {format: 'json'} do
+    namespace 'v1' do
+      get   '/home',    to:  'static_pages#home'
+      get  '/about',    to: 'static_pages#about'
+      get  '/help',     to: 'static_pages#help'
+      resources :notices do
+        collection do
+          get 'search'
+        end
+      end
+    end
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
@@ -29,11 +40,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notices do
-    collection do
-      get 'search'
-    end
-  end
+
   
   resources :messages,           only: [:create]
   resources :rooms,              only: [:create, :show, :index]
