@@ -8,7 +8,7 @@ RUN apt-get update -qq && apt-get install -y nodejs yarn
 RUN mkdir /webapp
 WORKDIR /webapp
 
-RUN mkdir /public_data
+RUN mkdir /public
 
 ADD Gemfile /webapp/Gemfile
 ADD Gemfile.lock /webapp/Gemfile.lock

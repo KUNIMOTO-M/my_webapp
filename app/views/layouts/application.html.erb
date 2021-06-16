@@ -6,8 +6,8 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag   'application', media: 'all',
                               'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag   'application',
-                              'data-turbolinks-track': 'reload' %>
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="    stylesheet">
     <!--[if lt IE 9]>
   <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
   </script>
@@ -24,13 +24,13 @@
             </h1>
           </div>
           <ul class="menu_list" >
-            <li class="menu_list_li"> <%= link_to "ホーム", root_path, class:"menu_list_item" %></li>
+            <li class="menu_list_li"> <%= link_to "ホーム", microposts_path, class:"menu_list_item" %></li>
             <li class="menu_list_li"> <%= link_to "検索", search_notices_path, class:"menu_list_item" %></li>
             <li class="menu_list_li"> <%= link_to "掲示板", notices_path, class:"menu_list_item" %></li>
             <li class="menu_list_li"> <%= link_to "メッセージ", rooms_path, class:"menu_list_item" %></li>
-            <li class="menu_list_li"> <%= link_to "プロフィール", "/users/#{current_user.id}", class:"menu_list_item" %></li>
-            <li class="menu_list_li"> <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトします？"}, class:"menu_list_item" %></li>
+            <li class="menu_list_li"> <%= link_to "プロフィール", "/users/#{current_user.id}/show_notice", class:"menu_list_item" %></li>
             <li class="menu_list_li"> <%= link_to "設定", edit_user_registration_path, class:"menu_list_item" %></li>
+            <li class="menu_list_li"> <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトします？"}, class:"menu_list_item" %></li>
           </ul> 
         </div>
       </div>

@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
     if user_signed_in?
       @microposts = Micropost.paginate(page: params[:page])
       @micropost  = Micropost.new 
+      redirect_to microposts_path
     end
   end
 

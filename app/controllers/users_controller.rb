@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, ]
 
 
-  def show
+  def show_notice
     profile_show
     @notices = @user.notices.paginate(page: params[:page])
+    render :show
   end
 
   def show_microposts
