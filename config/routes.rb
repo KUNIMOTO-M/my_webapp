@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get  '/about',    to: 'static_pages#about'
   get  '/help',     to: 'static_pages#help'
-
+  
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  resources :microposts,          only: [:create, :destroy] do
+  resources :microposts,          only: [:index, :create, :destroy] do
     collection do
       get 'search'
     end
@@ -16,12 +16,13 @@ Rails.application.routes.draw do
 
   resources :fileas,              only: [:new, :create, :destroy]
 
-  resources :users  do
+  resources :users,               only: [:index, :edit, :update] do
     collection do
       get 'set'
       get 'search'
     end
     member do
+      get 'show_notice'
       get 'following'
       get 'followers'
       get 'show_microposts'

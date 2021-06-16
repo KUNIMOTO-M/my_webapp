@@ -1,23 +1,4 @@
 <% if user_signed_in? %>
-  <div class="microposts">
-    <div class="title_container"> 
-      <h1 class="content">マイクロポスト</h1>
-    </div> 
-
-    <%= render "shared/micropost_form"  %>
-    <div class="notice_creater_container">
-      <div class="notice_creater">
-        <%= form_with model: @micropost do |f| %>
-        
-          <%= f.label :マイクロポスト %>
-          <p style="white-space:pre-wrap;">
-            <%= f.text_area :content,placeholder: "Tell everyone more about you!", class: "form-group form" %>
-          </p>
-          <%= f.submit"投稿", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
 <% else %>
 		<div class="hero_inner">
 			<div class="hero_heading">
