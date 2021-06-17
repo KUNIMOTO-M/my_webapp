@@ -1,5 +1,8 @@
 class NoticesController < ApplicationController
+skip_before_action :verify_authenticity_token
 before_action :correct_user,   only: :destroy
+
+
 
 	def create
 		@notice = current_user.notices.build(notice_params)
@@ -44,8 +47,12 @@ before_action :correct_user,   only: :destroy
 	end
 
 	def index
-		@notices = Notice.paginate(page: params[:page])
-		#同じページに投稿formを作る
+		@notices = Notice.joins(:user).select("notices.*, users.name, users.image")
+		#@notices = Notice.paginate(page: params[:page])
+		respond_to do |format|
+			format.html
+			format.json { render json: @notices}
+		end
 		@notice = Notice.new	
 	end
 

@@ -21,7 +21,7 @@
           </div>
           <div class="u_post_user_info">
             <%=@notice.user.name%>
-            地域: <%=@notice.user.area%>
+            地域: <%=@notice.area%>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
                 <% end %>
             </div>
       
-          <%= link_to "#{@notice.user.name}さんのプロフィールを見る", "/users/#{@notice.user.id}"%>
+          <%= link_to "#{@notice.user.name}さんのプロフィールを見る", "/users/#{@notice.user.id}/show_notice"%>
           <% if @user.id == current_user.id %>
           <% else %>
             <% if @isRoom == true %>

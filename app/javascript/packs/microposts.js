@@ -2,13 +2,18 @@ import Vue from 'vue/dist/vue.esm';
 import Vuetify from 'vuetify';
 import "vuetify/dist/vuetify.min.css"; 
 import axios from 'axios';
+import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(Vuetify); // 追加
 
 document.addEventListener('DOMContentLoaded', () => {
   const microposts = new Vue({
     el: '#microposts',
-    vuetify: new Vuetify(),
+    vuetify: new Vuetify({
+      icons: {
+        iconfont: 'mdi', 
+      },
+    }),
     data: function () {
       return {
           message: "Hello vue",
