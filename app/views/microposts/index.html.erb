@@ -2,7 +2,9 @@
 <div class="microposts">
     <div class="title_container"> 
       <h1 class="content">マイクロポスト</h1>
-      <v-btn text v-on:click="toggleMicropostModal()">New Snippet</v-btn>
+      <v-btn  v-on:click="toggleMicropostModal()" depressed style="margin-top:15px; margin-left:50px">
+        <v-icon>mdi-pencil</v-icon>
+      </v-btn>
     </div> 
 
     <div v-if="microposts.length" class="notice_container">
@@ -10,7 +12,7 @@
             <div class="notice_container_item2">
               <div class="notice_container_item_image">
                 <div class="user_image">                                                        
-                    <a class="image" v-if="micropost.image" ></a>
+                    <img class="image" v-if="micropost.image" v-bind:src="'uploads/' + micropost.image" >
                     <img src="/assets/default.png" v-else class="image" alt="ユーザーアイコン" >
                 </div>
               </div>
@@ -38,12 +40,11 @@
     <v-dialog v-model="dialogPostFlag" width="800" persistent> <!-- 説明 3.18 -->
         <v-card>
           <v-card-title class="headline red lighten-3 white--text" primary-title>
-            Create Form
+            Create Micropost
           </v-card-title>
   <v-card-text>
-    <p>マイクロポスト</p>
     <div style='width:100%;'>
-      <textarea style='width:100%; height:300px; background-color:#efefef; padding:3px' v-model='micropostContent'></textarea> <!-- 説明 3.19 -->
+      <textarea style='width:100%; height:300px; background-color:#efefef; padding:3px' v-model='micropostContent' placeholder="Tell everyone more about you!"></textarea> <!-- 説明 3.19 -->
     </div>
   </v-card-text>
   <v-divider></v-divider>
@@ -60,19 +61,6 @@
         </v-card>
       </v-dialog>
   </div>
-    <div class="notice_creater_container">
-      <div class="notice_creater">
-        <%= form_with model: @micropost do |f| %>
-        
-          <%= f.label :マイクロポスト %>
-          <p style="white-space:pre-wrap;">
-            <%= f.text_area :content,placeholder: "Tell everyone more about you!", class: "form-group form" %>
-          </p>
-          <%= f.submit"投稿", class: "btn btn-primary" %>
-    
-        <% end %>
-      </div>
-    </div>
 </div>
 </v-app>
 <%= javascript_pack_tag 'microposts' %>

@@ -1,35 +1,73 @@
+<v-app id="notices">
 <div class="posts-c">
   <div class="title_container"> 
     <h1 class="content">掲示板</h1>
-    
+    <v-btn  v-on:click="toggleNoticeModal()" depressed style="margin-top:15px; margin-left:50px">
+      <v-icon>mdi-pencil</v-icon>
+    </v-btn>
   </div> 
+
   <div class="posts-c-one">
-  <div class="card-group">
-    <% if @notices %>
-      <% @notices.each do |notice| %>
-          <div class="card ">
+  <div class="card-group" v-if="notices.length">
+          <div class="card" v-for="notice in notices">
           <div class="profile_image_area">
             <div class="user_image2">
-              <% if notice.user.image? %>                                                              
-                <%= image_tag notice.user.image.url(:thumb), class: "image2" %>
-              <% else %>
-                <img src="/assets/default.png" class="image2" alt="ユーザーアイコン" >
-              <% end %>
+              <img class="image" v-if="notice.image" v-bind:src="'uploads/' + notice.image" >
+              <img src="/assets/default.png" v-else class="image" alt="ユーザーアイコン" >
               </div>
           </div>
             <div class="card-body">
-              <h4 class="card-title"><%= notice.user.name %></h4>
-              <p class="card-text"><%= notice.notice_title %></p>
-              <%= link_to "詳細", notice_path(notice), {class: "btn btn-primary"} %>
+              <h4 class="card-title">{{notice.name}}</h4>
+              <p class="card-text">{{notice.notice_title }}</p>
+ <a v-bind:href="'notices/' + notice.id ">
+  <v-btn color="primary">
+    <v-icon>more</v-icon>
+  </v-btn>
+  </a>
             </div>
             </div>
-      <% end %>
       </div>
   </div>
-      <div class="pagenate_tag">
-        <%= will_paginate @notices%>
-      </div>
-    <% end %>
+  <v-dialog v-model="dialogPostFlag" width="800" persistent> <!-- 説明 3.18 -->
+    <v-card>
+      <v-card-title class="headline red lighten-3 white--text" primary-title>
+        Create Notice
+      </v-card-title>
+      <v-text-field v-model="noticeTitle" label="Notice Title" required style='margin:20px; margin-top:30px'></v-text-field>
+      <v-select
+          v-model="noticeArea"
+          item-text="label"
+          item-value="value"
+          :items="areas"
+          label="募集エリア"
+          return-object
+          required style='margin:20px; margin-top:30px'
+        ></v-select>
+      <v-card-text>
+        <p>募集内容</p>
+        <div style='width:100%;'>
+          <textarea style='width:100%; height:300px; background-color:#efefef; padding:3px' v-model='noticeContent'></textarea> <!-- 説明 3.19 -->
+        </div>
+      </v-card-text>
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-btn color="#grey lighten-4" text v-on:click="toggleNoticeModal">
+          Cancel
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="red" text v-on:click="postNotice">
+          Add Micropost
+        </v-btn>
+      </v-card-actions>
+
+
+
+    <v-card>
+  </v-dialog>
+
 </div>
+</v-app>
+<%= javascript_pack_tag "notices" %>
 
 

@@ -45,7 +45,7 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
   config.web_console.whitelisted_ips = '172.23.0.1'
-
+  config.web_console.whitelisted_ips =  '192.168.16.1'
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 
