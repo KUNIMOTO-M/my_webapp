@@ -7,28 +7,7 @@
       <v-icon>mdi-pencil</v-icon>
     </v-btn>
   </div> 
-
-  <div class="posts-c-one">
-  <div class="card-group" v-if="notices.length">
-          <div class="card" v-for="notice in notices">
-          <div class="profile_image_area">
-            <div class="user_image2">
-              <img class="image" v-if="notice.image" v-bind:src="'uploads/' + notice.image" >
-              <img src="/assets/default.png" v-else class="image" alt="ユーザーアイコン" >
-              </div>
-          </div>
-            <div class="card-body">
-              <h4 class="card-title">{{notice.name}}</h4>
-              <p class="card-text">{{notice.notice_title }}</p>
- <a v-bind:href="'notices/' + notice.id ">
-  <v-btn color="primary">
-    <v-icon>more</v-icon>
-  </v-btn>
-  </a>
-            </div>
-            </div>
-      </div>
-  </div>
+  <page-nation></page-nation>
   <v-dialog v-model="dialogPostFlag" width="800" persistent> <!-- 説明 3.18 -->
     <v-card>
       <v-card-title class="headline red lighten-3 white--text" primary-title>

@@ -129,7 +129,7 @@ RSpec.describe User, type: :request do
 
         it "imageを更新に成功すること" do
           put user_path(user), params: { user:{  image: ''}}
-          expect(response).to redirect_to user_path(user)
+          expect(response).to redirect_to show_notice_user_path(user)
         end
 
         it "自己紹介の更新に成功すること" do

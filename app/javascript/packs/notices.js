@@ -4,23 +4,25 @@ import "vuetify/dist/vuetify.min.css";
 import axios from 'axios';
 import '@mdi/font/css/materialdesignicons.css'
 import TurbolinksAdapter from 'vue-turbolinks';
+import PageNation from '../Pagenation.vue';
+
 
 Vue.use(TurbolinksAdapter)
 
 Vue.use(Vuetify);
-
 document.addEventListener('turbolinks:load', () => {
   const notices = new Vue({
     el: '#notices',
+    components: { PageNation },
     vuetify: new Vuetify({
       icons: {
         iconfont: 'mdi', 
       },
     }),
-    data: function () {
-      return {
+    data: {
         message: "Hello Vue",
         notices: [""],
+        items: [],
         dialogPostFlag: false,
         noticeTitle: "",
         noticeContent: "",
@@ -75,13 +77,12 @@ document.addEventListener('turbolinks:load', () => {
         {label: '鹿児島県',value: 46},
         {label: '沖縄県',value: 47},
       ]
-      }
     },
     methods: {
       noticesList: function() {
         axios.get('/notices.json')
         .then(response => {
-          this.notices = response.data
+          this.items = response.data
         }
         )
       },
@@ -91,17 +92,14 @@ document.addEventListener('turbolinks:load', () => {
       postNotice: function() {
         axios.post('/notices', {notice_title: this.noticeTitle, notice_body: this.noticeContent, area: this.noticeArea.value})
         .then(response => {
-          this.noticesList();
           this.noticeTitle = "",
           this.noticeContent = "",
           this.noticeArea = ""
           }
         )
           this.dialogPostFlag = !this.dialogPostFlag
+          window.location.href = '/notices';
       },
     },
-    created () {
-      this.noticesList();
-    }
   })
 })
