@@ -25,6 +25,6 @@ class FileasController < ApplicationController
   private
 
   def filea_params
-    params.require(:filea).permit(:title, :content, :file)
+    params.require(:filea).permit(:title, :file)
   end
 end

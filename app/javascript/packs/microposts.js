@@ -2,11 +2,14 @@ import Vue from 'vue/dist/vue.esm';
 import Vuetify from 'vuetify';
 import "vuetify/dist/vuetify.min.css"; 
 import axios from 'axios';
-import '@mdi/font/css/materialdesignicons.css'
+import '@mdi/font/css/materialdesignicons.css';
+import TurbolinksAdapter from 'vue-turbolinks';
+
+Vue.use(TurbolinksAdapter)
 
 Vue.use(Vuetify); // 追加
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const microposts = new Vue({
     el: '#microposts',
     vuetify: new Vuetify({

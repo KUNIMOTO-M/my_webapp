@@ -3,10 +3,13 @@ import Vuetify from 'vuetify';
 import "vuetify/dist/vuetify.min.css";
 import axios from 'axios';
 import '@mdi/font/css/materialdesignicons.css'
+import TurbolinksAdapter from 'vue-turbolinks';
+
+Vue.use(TurbolinksAdapter)
 
 Vue.use(Vuetify);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const notices = new Vue({
     el: '#notices',
     vuetify: new Vuetify({
@@ -97,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
           this.dialogPostFlag = !this.dialogPostFlag
       },
     },
-    mounted () {
+    created () {
       this.noticesList();
     }
   })

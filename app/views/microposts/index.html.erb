@@ -11,10 +11,12 @@
           <div class="notice_container_item" v-for="micropost in microposts">
             <div class="notice_container_item2">
               <div class="notice_container_item_image">
+              <a v-bind:href="'users/' + micropost.user_id + '/show_notice' ">
                 <div class="user_image">                                                        
                     <img class="image" v-if="micropost.image" v-bind:src="'uploads/' + micropost.image" >
                     <img src="/assets/default.png" v-else class="image" alt="ユーザーアイコン" >
                 </div>
+              </a>
               </div>
               <div class="microposts_contents">
                 <div class="microposts_info">
@@ -39,7 +41,7 @@
     </div>
     <v-dialog v-model="dialogPostFlag" width="800" persistent> <!-- 説明 3.18 -->
         <v-card>
-          <v-card-title class="headline red lighten-3 white--text" primary-title>
+          <v-card-title class="headline primary lighten-3 white--text" primary-title>
             Create Micropost
           </v-card-title>
   <v-card-text>

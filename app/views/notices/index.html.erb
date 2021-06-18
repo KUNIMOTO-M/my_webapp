@@ -1,3 +1,4 @@
+<%= javascript_pack_tag "notices" %>
 <v-app id="notices">
 <div class="posts-c">
   <div class="title_container"> 
@@ -33,7 +34,7 @@
       <v-card-title class="headline red lighten-3 white--text" primary-title>
         Create Notice
       </v-card-title>
-      <v-text-field v-model="noticeTitle" label="Notice Title" required style='margin:20px; margin-top:30px'></v-text-field>
+      <v-text-field v-model="noticeTitle" label="タイトル" required style='margin:20px; margin-top:30px'></v-text-field>
       <v-select
           v-model="noticeArea"
           item-text="label"
@@ -57,7 +58,7 @@
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn color="red" text v-on:click="postNotice">
-          Add Micropost
+          Add Notice
         </v-btn>
       </v-card-actions>
 
@@ -68,6 +69,5 @@
 
 </div>
 </v-app>
-<%= javascript_pack_tag "notices" %>
 
 
