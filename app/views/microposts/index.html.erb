@@ -6,39 +6,7 @@
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
     </div> 
-
-    <div v-if="microposts.length" class="notice_container">
-          <div class="notice_container_item" v-for="micropost in microposts">
-            <div class="notice_container_item2">
-              <div class="notice_container_item_image">
-              <a v-bind:href="'users/' + micropost.user_id + '/show_notice' ">
-                <div class="user_image">                                                        
-                    <img class="image" v-if="micropost.image" v-bind:src="'uploads/' + micropost.image" >
-                    <img src="/assets/default.png" v-else class="image" alt="ユーザーアイコン" >
-                </div>
-              </a>
-              </div>
-              <div class="microposts_contents">
-                <div class="microposts_info">
-                  <div class="microposts_info_user">
-                    <div class="micropost_user">
-                      {{micropost.name}}
-                    </div>
-                    <div class="micropost_time">
-                        Posted {{micropost.created_at}} ago.
-                    </div>
-                  </div>
-                  <div class="microposts_delete">
-              
-                  </div>
-                </div>
-                <div class="micropost_content">
-                  {{ micropost.content}}
-                </div>
-              </div>
-          </div>
-          </div>
-    </div>
+<page-nation></page-nation>
     <v-dialog v-model="dialogPostFlag" width="800" persistent> <!-- 説明 3.18 -->
         <v-card>
           <v-card-title class="headline primary lighten-3 white--text" primary-title>

@@ -52,7 +52,7 @@ let(:user){ create(:user) }
     end
 
     it "プロフィールを表示" do
-      get user_path(user)
+      get show_notice_user_path(user)
       expect(response).to have_http_status(200)
     end
   end
