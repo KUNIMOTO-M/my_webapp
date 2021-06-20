@@ -16,6 +16,7 @@ class User < ApplicationRecord
 	has_many :microposts, dependent: :destroy
 	has_many :notices, dependent: :destroy
 	has_many :messages, dependent: :destroy
+	has_many :states, dependent: :destroy
 	has_many :fileas,	dependent: :destroy
   has_many :entries, dependent: :destroy
 	validates :introduction, length: {maximum: 160}
@@ -32,6 +33,10 @@ class User < ApplicationRecord
     徳島県:36,香川県:37,愛媛県:38,高知県:39,
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46, 
     沖縄県:47
+  }
+	enum reason:{
+    なんとなく:0,
+    友達探し:1,話しかけてください:2,暇:3,です:4,です:5
   }
 		
 

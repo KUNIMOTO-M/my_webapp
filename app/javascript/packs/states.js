@@ -3,15 +3,16 @@ import Vuetify from 'vuetify';
 import "vuetify/dist/vuetify.min.css"; 
 import '@mdi/font/css/materialdesignicons.css';
 import TurbolinksAdapter from 'vue-turbolinks';
-import PageNation from '../PagenationMicropost.vue';
+import Reason from '../ReasonsState.vue';
+
 Vue.use(TurbolinksAdapter)
 
-Vue.use(Vuetify); // 追加
+Vue.use(Vuetify);
 
 document.addEventListener('turbolinks:load', () => {
-  const microposts = new Vue({
-    el: '#microposts',
-    render: (h) => h(PageNation),
+  const states = new Vue({
+    el: '#states',
+    render: (h) => h(Reason),
     vuetify: new Vuetify({
       icons: {
         iconfont: 'mdi', 

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-
+  resources :states,              only: [:create, :destroy, :index]
   resources :microposts,          only: [:index, :create, :destroy] do
     collection do
       get 'search'
