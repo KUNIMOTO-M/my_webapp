@@ -1,4 +1,36 @@
 <template>
+<v-app id="microposts">
+<div class="microposts">
+    <div class="title_container"> 
+      <h1 class="content">マイクロポスト</h1>
+      <v-btn  v-on:click="toggleMicropostModal()" depressed style="margin-top:15px; margin-left:50px">
+        <v-icon>mdi-pencil</v-icon>
+      </v-btn>
+    </div> 
+
+    <v-dialog v-model="dialogPostFlag" width="800" persistent> <!-- 説明 3.18 -->
+            <v-card>
+              <v-card-title class="headline primary lighten-3 white--text" primary-title>
+                Create Micropost
+              </v-card-title>
+      <v-card-text>
+        <div style='width:100%;'>
+          <textarea style='width:100%; height:300px; background-color:#efefef; padding:3px' v-model='micropostContent' placeholder="Tell everyone more about you!"></textarea> <!-- 説明 3.19 -->
+        </div>
+      </v-card-text>
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-btn color="#grey lighten-4" text v-on:click="toggleMicropostModal">
+          Cancel
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="red" text v-on:click="postMicropost">
+          Add Micropost
+        </v-btn>
+      </v-card-actions>
+            </v-card>
+      </v-dialog>
 
     <div v-if="items.length" class="notice_container">
        <div style="text-align:center;">
@@ -47,7 +79,8 @@
     </paginate>
     </div>
     </div>
-
+</div>
+</v-app>
 </template>
 <script>
 import Vue from 'vue/dist/vue.esm';
@@ -66,7 +99,9 @@ import moment from 'moment';
      return {
      items: [],
      parPage: 40,
-     currentPage: 1
+     currentPage: 1,
+     dialogPostFlag: false,
+     micropostContent: "",
    }},
    methods: {
     clickCallback: function (pageNum) {
@@ -80,6 +115,19 @@ import moment from 'moment';
       }
       )
     },
+    toggleMicropostModal: function() {
+        console.log('aaa');
+        this.dialogPostFlag = !this.dialogPostFlag
+      },
+      postMicropost: function() {
+        axios.post('/microposts', {content: this.micropostContent})
+          .then(response => {
+            this.micropostContent = ''
+            this.noticesList(); 
+          }
+        );
+        this.dialogPostFlag = !this.dialogPostFlag
+      },
     returnTop() {
       window.scrollTo({
         top: 0,

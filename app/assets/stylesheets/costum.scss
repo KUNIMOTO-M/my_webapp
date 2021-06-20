@@ -395,6 +395,7 @@ padding-left: 20px;
 padding-top: 30px;
 } */
 
+
 .profile_image_area {
   height: 160px;
   background-image: image-url('a.jpg');
@@ -660,4 +661,13 @@ margin-bottom: 30px;
 /* pagenation*/
 .pagenate_tag {
   text-align: center;
+}
+
+.active {
+  background-color:#00BFFF;
+}
+
+.v-btns{
+  margin:8px;
+  font-weight: bold;
 }

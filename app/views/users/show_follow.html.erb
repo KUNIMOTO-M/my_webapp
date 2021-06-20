@@ -1,7 +1,7 @@
 <div class="microposts">
   <div class="title_container ccc">
     <h1 class="content"><%=@user.name%></h1>
-    <%= link_to "プロフィールに戻る", @user, {class:"back_profile"} %>
+    <%= link_to "プロフィールに戻る", show_notice_user_path(@user), {class:"back_profile"} %>
   </div>
 
   <div class="follow_container">

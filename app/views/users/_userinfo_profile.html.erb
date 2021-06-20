@@ -6,19 +6,23 @@
                       <%= @user.name%>
                     </div>
                     <p>登録地域　<%= @user.area%></p>
+                    <v-app id="states"> 
+                    
+                    </v-app>
+                    <%= javascript_pack_tag "states" %>
                   </div>
                   <div class="profile_icons">
                     <%= render 'follow_form' if user_signed_in? %>
                     <% if @user.id == current_user.id %>
                     <% else %>
                       <% if @isRoom == true %>
-                        <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+                        <%= link_to "チャットへ", room_path(@roomId), class: "btn btn-primary" %>
                       <% else %>
                         <%= form_for @room do |f| %>
                           <%= fields_for @entry do |e| %>
                             <%= e.hidden_field :user_id, :value=> @user.id %>
                           <% end %>
-                          <%= f.submit "チャットを始める", class: "btn btn-primary" %>
+                          <%= f.submit "チャットを始める", style: "color:#fff;",class: "btn btn-primary" %>
                         <% end %>
                       <% end %>
                     <%end%>
