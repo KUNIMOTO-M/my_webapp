@@ -3,6 +3,11 @@ class MicropostsController < ApplicationController
   before_action :correct_user, only: [:destroy] 
   def index
       @microposts = Micropost.joins(:user).select("microposts.*, users.name, users.image")
+      @microposts.map do |micropost|
+        if micropost.image
+          micropost.image = micropost.user.image.url
+        end
+      end
       respond_to do |format|
         format.html 
         format.json { render json: @microposts }

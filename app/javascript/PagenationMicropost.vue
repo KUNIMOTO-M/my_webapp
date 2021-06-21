@@ -40,7 +40,7 @@
               <div class="notice_container_item_image">
               <a v-bind:href="'users/' + item.user_id + '/show_notice' ">
                 <div class="user_image">                                                        
-                    <img class="image" v-if="item.image" v-bind:src="'uploads/' + item.image" >
+                    <img class="image" v-if="item.image" v-bind:src="item.image" >
                     <img src="/assets/default.png" v-else class="image" alt="ユーザーアイコン" >
                 </div>
               </a>

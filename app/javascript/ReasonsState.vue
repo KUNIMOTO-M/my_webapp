@@ -1,10 +1,8 @@
 <template>
-  <v-app id="states">
-    <v-btn  v-on:click="statusBoard()" depressed style="margin-top:15px; margin-left:50px">
-      <v-icon>mdi-pencil</v-icon>
-    </v-btn>
+  <v-app id="states" class="v-states" >
+  <div style="display:flex;">
     <div v-if="states.length">
-      <div  v-for="state in states" :key="state.id">
+      <a  v-for="state in states" :key="state.id">
         <v-chip
         class="ma-2"
         color="blue"
@@ -16,8 +14,15 @@
         </v-icon>
         {{state.reason}}
       </v-chip>
-      </div>
-    </div>                   
+      </a>
+    </div> 
+
+    <div>
+      <v-btn  v-on:click="statusBoard()" depressed style="margin-top:15px; margin-left:50px">
+        <v-icon>mdi-card-plus</v-icon>
+      </v-btn>
+    </div>    
+  </div>
     <v-dialog
         transition="dialog-top-transition"
         max-width="600"
@@ -34,35 +39,27 @@
           <div>
             <v-btn rounded class="v-btns" v-bind:class="{ active: statusA }" v-on:click="changeStatusA" text>
               見るだけ
-              {{statusA}}
             </v-btn>
             <v-btn  rounded class="v-btns" v-bind:class="{active: statusB}" v-on:click="changeStatusB" text>
               友達募集
-              {{statusB}}
             </v-btn>
             <v-btn rounded class="v-btns" v-bind:class="{active: statusC}" v-on:click="changeStatusC" text>
               メッセージOK
-              {{statusC}}
             </v-btn>
             <v-btn rounded class="v-btns" v-bind:class="{active: statusD}" v-on:click="changeStatusD" text>
               勉強会しましょう
-              {{statusD}}
             </v-btn>
               <v-btn rounded class="v-btns" v-bind:class="{active: statusE}" v-on:click="changeStatusE"  text>
               一緒に研究
-              {{statusE}}
             </v-btn>
               <v-btn rounded class="v-btns" v-bind:class="{active: statusF}" v-on:click="changeStatusF" text>
               情報共有
-              {{statusF}}
             </v-btn>
             <v-btn rounded class="v-btns" v-bind:class="{active: statusG}" v-on:click="changeStatusG" text>
               同分野の人募集
-              {{statusG}}
             </v-btn>
             <v-btn rounded class="v-btns" v-bind:class="{active: statusH}" v-on:click="changeStatusH" text>
               誰でも歓迎
-              {{statusH}}
             </v-btn>
           </div>
         </v-card-actions>
@@ -103,7 +100,7 @@ export default {
         console.log("aaa")
       },
       getStatus: function() {
-        axios.get('/states')
+        axios.get('/states/' + this.userId + '/index')
         .then(response => {
         this.states = response.data
         })
@@ -117,7 +114,7 @@ export default {
       },
       statusBoard: function(){
         this.toggleNoticeModal();
-        axios.get('/states')
+        axios.get('/states/' + this.userId + '/index')
         .then(response => {
           for (const status of response.data) {
               if (status.reason === "見るだけ") {
@@ -212,3 +209,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.v-application--wrap{
+min-height: 10vh;
+}
+</style>
