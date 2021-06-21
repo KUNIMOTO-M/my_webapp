@@ -14,7 +14,7 @@
     <div class="card" v-for="item in getItems" :key="item.id">
     <div class="profile_image_area">
       <div class="user_image2">
-        <img class="image" v-if="item.image" v-bind:src="'uploads/' + item.image" >
+        <img class="image" v-if="item.image" v-bind:src="item.image" >
         <img src="/assets/default.png" v-else class="image" alt="ユーザーアイコン" >
         </div>
     </div>

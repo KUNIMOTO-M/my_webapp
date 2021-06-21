@@ -49,6 +49,11 @@ before_action :correct_user,   only: :destroy
 	def index
 		@notices = Notice.joins(:user).select("notices.*, users.name, users.image")
 		#@notices = Notice.paginate(page: params[:page])
+		@notices.map do |notice|
+			if notice.image
+					notice.image = notice.user.image.url
+			end
+		end
 		respond_to do |format|
 			format.html
 			format.json { render json: @notices}
