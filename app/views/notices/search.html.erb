@@ -14,12 +14,12 @@
       <%= f.label :募集地域 %>
       <%= f.select :area, Notice.areas.keys, {}, {class: 'hoge'} %>
 
-      <%= f.submit"検索", class: "btn btn-primary" %>
+      <%= f.submit"検索", class: "btn btn-primary", style: "color:#fff;" %>
       <% end %>
 
       <%= form_tag(search_notices_path, :method => "get") do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag"キーワード検索", class: "btn btn-primary" %>
+      <%= text_field_tag :search,"", {style: "border-style: solid;"} %>
+      <%= submit_tag"キーワード検索", class: "btn btn-primary", style: "color:#fff;" %>
       <% end %>
     </div>
   </div>

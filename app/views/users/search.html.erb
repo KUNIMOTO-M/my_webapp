@@ -14,12 +14,19 @@
       <%= f.label :登録地域 %>
       <%= f.select :area, User.areas.keys, {}, {class: 'hoge'} %>
 
-      <%= f.submit"検索", class: "btn btn-primary" %>
+      <%= f.submit"検索", class: "btn btn-primary", style: "color:#fff;" %>
+      <% end %>
+      
+      <%= form_with url:'/users/search', method: :get do |f| %>
+      <%= f.label :目的 %>
+      <%= f.select :reason, State.reasons.keys, {}, {class: 'hoge'} %>
+      <%= f.submit"検索", class: "btn btn-primary", style: "color:#fff;" %>
       <% end %>
 
+
       <%= form_tag(search_users_path, :method => "get") do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag"キーワード検索", class: "btn btn-primary" %>
+      <%= text_field_tag :search,"", {style: "border-style: solid;"}%>
+      <%= submit_tag"キーワード検索", class: "btn btn-primary", style: "color:#fff;" %>
       <% end %>
     </div>
   </div>

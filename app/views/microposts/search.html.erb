@@ -13,8 +13,8 @@
       <%= link_to "マイクロポスト", search_microposts_path %>
 
       <%= form_tag(search_microposts_path, :method => "get") do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag"キーワード検索", class: "btn btn-primary" %>
+      <%= text_field_tag :search,"", {style: "border-style: solid;"} %>
+      <%= submit_tag"キーワード検索", class: "btn btn-primary",style: "color:#fff;" %>
       <% end %>
 
     </div>

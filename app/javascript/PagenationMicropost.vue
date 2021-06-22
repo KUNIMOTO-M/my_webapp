@@ -128,7 +128,7 @@ import moment from 'moment';
         this.dialogPostFlag = !this.dialogPostFlag
       },
       postMicropost: function() {
-        axios.post('/microposts', {content: this.micropostContent})
+        axios.post('/microposts', {content: this.micropostContent, images: this.image})
           .then(response => {
             this.micropostContent = ''
             this.noticesList(); 

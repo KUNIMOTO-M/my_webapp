@@ -21,7 +21,7 @@
 
 				<div>
 				<%= f.label	:自己紹介%>
-				<%= f.text_area :introduction, class: "form u_set_li aasa" %>
+				<%= f.text_area :introduction, class: "form u_set_li aasa",style: "border-style: solid;" %>
 				</div>
 
 				<div>
@@ -29,7 +29,7 @@
 				<%= f.select :area, User.areas.keys, {}, {class: 'hoge u_set_li'} %>
 				</div>
 
-				<%= f.submit"登録",	class: "btn btn-primary" %>
+				<%= f.submit"登録",	class: "btn btn-primary",style: "color:#fff;" %>
 			<% end %>
 			</div>
 			</div>
