@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'like/create'
+  get 'like/destroy'
+  get 'like/index'
+  get 'create/destroy'
+  get 'create/index'
   devise_for :users
   root 'static_pages#home'
   get  '/about',    to: 'static_pages#about'
@@ -7,6 +12,10 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
+
+  resources :like, only: [:index, :create, :destroy] do
+  end
+
   resources :states,              only: [:create, :destroy] do
     member do
       get 'index'
