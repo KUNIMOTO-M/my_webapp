@@ -49,7 +49,11 @@ class UsersController < ApplicationController
       if !params[:search].blank?
         @users = User.where("name LIKE ? OR introduction LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
       end
-    else
+    elsif params[:reason]
+      @states = State.where(reason: params[:reason])
+      @users = @states.map do |state|
+        User.find_by(id: state.user_id)
+      end
     end
   end
 
@@ -76,7 +80,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :file, :area, :introduction, :background_image)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :file, :area, :introduction, :reason)
   end
 
   def correct_user
