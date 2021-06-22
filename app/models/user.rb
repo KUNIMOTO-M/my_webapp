@@ -17,6 +17,7 @@ class User < ApplicationRecord
 	has_many :notices, dependent: :destroy
 	has_many :messages, dependent: :destroy
 	has_many :states, dependent: :destroy
+	has_many :likes, dependent: :destroy
 	has_many :fileas,	dependent: :destroy
   has_many :entries, dependent: :destroy
 	validates :introduction, length: {maximum: 160}

@@ -62,6 +62,10 @@
                 <div class="micropost_content">
                   {{ item.content}}
                 </div>
+                <div id="like">
+
+          <like :user-id="item.user_id" :micropost-id="item.id"></like>
+                </div>
               </div>
           </div>
           </div>
@@ -86,10 +90,14 @@
 import Vue from 'vue/dist/vue.esm';
 import Paginate from 'vuejs-paginate'
 import axios from 'axios';
+import Like from 'LikeButton.vue';
 Vue.component('paginate', Paginate);
 import moment from 'moment';
 
  export default {
+   components: {
+      'like': Like
+   },
     filters: {
       moment: function (date) {
           return moment(date).fromNow();
