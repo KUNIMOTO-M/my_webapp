@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   end
 
   resources :like, only: [:index, :create, :destroy] do
+    collection do
+      get 'userid'
+    end
   end
 
   resources :states,              only: [:create, :destroy] do

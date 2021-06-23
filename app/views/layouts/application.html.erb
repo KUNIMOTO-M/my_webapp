@@ -26,10 +26,10 @@
           </div>
           <ul class="menu_list" >
             <li class="menu_list_li" data-turbolinks="false"> <%= link_to "ホーム", microposts_path, class:"menu_list_item" %></li>
-            <li class="menu_list_li"> <%= link_to "検索", search_notices_path, class:"menu_list_item" %></li>
             <li class="menu_list_li" data-turbolinks="false"> <%= link_to "掲示板", notices_path, class:"menu_list_item" %></li>
             <li class="menu_list_li" > <%= link_to "メッセージ", rooms_path, class:"menu_list_item" %></li>
             <li class="menu_list_li" data-turbolinks="false"> <%= link_to "プロフィール", "/users/#{current_user.id}/show_notice", class:"menu_list_item" %></li>
+            <li class="menu_list_li"> <%= link_to "検索", search_notices_path, class:"menu_list_item" %></li>
             <li class="menu_list_li"> <%= link_to "設定", edit_user_registration_path, class:"menu_list_item" %></li>
             <li class="menu_list_li"> <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトします？"},  style: "color:#fff;", class:"menu_list_item" %></li>
           </ul> 

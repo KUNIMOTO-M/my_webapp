@@ -64,7 +64,7 @@
                 </div>
                 <div id="like">
 
-          <like :user-id="item.user_id" :micropost-id="item.id"></like>
+          <like :micropost-id="item.id"></like>
                 </div>
               </div>
           </div>
@@ -110,6 +110,7 @@ import moment from 'moment';
      currentPage: 1,
      dialogPostFlag: false,
      micropostContent: "",
+     prop: null
    }},
    methods: {
     clickCallback: function (pageNum) {
@@ -128,7 +129,7 @@ import moment from 'moment';
         this.dialogPostFlag = !this.dialogPostFlag
       },
       postMicropost: function() {
-        axios.post('/microposts', {content: this.micropostContent, images: this.image})
+        axios.post('/microposts', {content: this.micropostContent})
           .then(response => {
             this.micropostContent = ''
             this.noticesList(); 
@@ -145,6 +146,7 @@ import moment from 'moment';
     },
     created () {
       this.noticesList();
+      this.prop = this.userId
     },
    computed: {
      getItems: function() {

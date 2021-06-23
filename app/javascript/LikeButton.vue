@@ -27,10 +27,11 @@ import axios from 'axios'
 
 export default {
   // propsでrailsのviewからデータを受け取る
-  props: ['userId', 'micropostId'],
-  data: function() {
+  props: ['micropostId'],
+  data() {
     return {
-      likeList: []  // いいね一覧を格納するための変数　{ id: 1, user_id: 1, post_id: 1 } がArrayで入る
+      likeList: [],
+      userId: null  // いいね一覧を格納するための変数　{ id: 1, user_id: 1, post_id: 1 } がArrayで入る
     }
   },
   // 算出プロパティ ここではlikeListが変更される度に、count、isLiked が再構築される (watchで監視するようにしても良いかも)
@@ -41,12 +42,8 @@ export default {
     },
     // ログインユーザが既にいいねしているかを判定する
     isLiked() {
-      for ( const like of this.likeList){
-      if (like.micropost_id !== this.micropostId) { return false }
-      else{
-      return true
-      }
-      }
+      if (this.likeList.length === 0) { return false }
+      return Boolean(this.findLikeId())
     }
   },
   // Vueインスタンスの作成・初期化直後に実行される
@@ -54,11 +51,15 @@ export default {
     this.fetchLikeByPostId().then(result => {
       this.likeList = result
     })
+        axios.get('/like/userid')
+    .then(response => {
+      this.userId = response.data
+    })
   },
   methods: {
     // rails側のindexアクションにリクエストするメソッド
     fetchLikeByPostId: async function() {
-      const res = await axios.get(`like/?micropost_id=${this.micropostId}`)
+      const res = await axios.get(`/like/?micropost_id=${this.micropostId}`)
       if (res.status !== 200) { process.exit() }
       return res.data
     },
@@ -73,14 +74,9 @@ export default {
     // rails側のdestroyアクションにリクエストするメソッド
     deleteLike: async function() {
       const likeId = this.findLikeId()
-      for (const like of this.likeList) {
-        if(like.micropost_id === this.micropostId){
-          const id = like.id
-                const res = await axios.delete(`/like/${id}`)
+      const res = await axios.delete(`/like/${likeId}`)
       if (res.status !== 200) { process.exit() }
-      this.likeList = this.likeList.filter(n => n.id !== id)
-        }
-      }
+      this.likeList = this.likeList.filter(n => n.id !== likeId)
     },
     // ログインユーザがいいねしているlikeモデルのidを返す
     findLikeId: function() {
