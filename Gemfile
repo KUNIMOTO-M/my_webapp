@@ -57,6 +57,7 @@ end
 
   group :development, :test do
   gem "rspec-rails", "~> 4.0.1"
+  gem "rspec_junit_formatter"
   gem 'spring-commands-rspec'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
