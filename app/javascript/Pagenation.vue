@@ -1,4 +1,5 @@
 <template>
+<v-app id="notices">
 <div>
 <div class="posts-c">
   <div class="title_container"> 
@@ -84,9 +85,10 @@
   </v-dialog>
 
 </div>
+</v-app>
 </template>
 <script>
-import Vue from 'vue/dist/vue.esm';
+import Vue from 'vue';
 import Paginate from 'vuejs-paginate'
 import axios from 'axios';
 Vue.component('paginate', Paginate)

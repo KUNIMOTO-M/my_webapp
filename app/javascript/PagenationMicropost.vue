@@ -87,7 +87,7 @@
 </v-app>
 </template>
 <script>
-import Vue from 'vue/dist/vue.esm';
+import Vue from 'vue';
 import Paginate from 'vuejs-paginate'
 import axios from 'axios';
 import Like from 'LikeButton.vue';

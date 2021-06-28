@@ -16,7 +16,8 @@ gem 'will_paginate', '3.1.8'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'bootstrap-sass', '3.4.1'
 gem 'puma'
-gem 'sass-rails', '5.1.0'
+gem 'sassc', '2.1.0'
+gem 'sass-rails', '6'
 gem 'webpacker'
 gem 'turbolinks', '5.2.0'
 gem 'jbuilder',   '2.9.1'
@@ -41,6 +42,8 @@ group :development do
   gem 'spring', '2.1.0'
   gem 'spring-watcher-listen', '2.0.1'
   gem 'letter_opener_web'
+  gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :test do
