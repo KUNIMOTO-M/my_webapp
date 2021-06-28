@@ -8,31 +8,29 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get  '/about',    to: 'static_pages#about'
   get  '/help',     to: 'static_pages#help'
-  
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
 
-  resources :like, only: [:index, :create, :destroy] do
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
+  resources :like, only: %i[index create destroy] do
     collection do
       get 'userid'
     end
   end
 
-  resources :states,              only: [:create, :destroy] do
+  resources :states, only: %i[create destroy] do
     member do
       get 'index'
     end
   end
-  resources :microposts,          only: [:index, :create, :destroy] do
+  resources :microposts, only: %i[index create destroy] do
     collection do
       get 'search'
     end
   end
 
-  resources :fileas,              only: [:new, :create, :destroy]
+  resources :fileas,              only: %i[new create destroy]
 
-  resources :users,               only: [:index, :edit, :update] do
+  resources :users,               only: %i[index edit update] do
     collection do
       get 'set'
       get 'search'
@@ -51,8 +49,8 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  
+
   resources :messages,           only: [:create]
-  resources :rooms,              only: [:create, :show, :index]
-  resources :relationships,       only: [:create, :destroy]
+  resources :rooms,              only: %i[create show index]
+  resources :relationships, only: %i[create destroy]
 end

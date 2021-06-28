@@ -7,6 +7,6 @@ class CreateNotices < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    add_index :notices, [:user_id, :created_at]
+    add_index :notices, %i[user_id created_at]
   end
 end
