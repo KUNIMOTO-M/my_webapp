@@ -1,4 +1,11 @@
 class ImageUploader < CarrierWave::Uploader::Base
+  if Rails.env.development?
+    storage :file
+  elsif Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
   # リサイズしたり画像形式を変更するのに必要
   include CarrierWave::RMagick
 
