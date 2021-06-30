@@ -49,7 +49,7 @@
 ## フロントエンド
 * HTML/CSS
 * Javascript
-* Vue.js 2.6.14
+* Vue.js 2.6.14(掲示板・マイクロポスト・ユーザーステータス)
 
 ## インフラ・開発環境
 * Git/Github (pull requestを利用)
@@ -60,6 +60,8 @@
 * Nginx
 * puma
 
+## インフラ構成図
+![aws drawio](https://user-images.githubusercontent.com/77427889/123908321-3a45ef80-d9b2-11eb-9553-d3b475216b5f.png)
 # 実装した機能
 
 * ユーザー登録(devise)  
