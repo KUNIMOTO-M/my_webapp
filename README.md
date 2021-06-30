@@ -1,4 +1,5 @@
-# 学生研究者のためのSNSアプリケーション
+# SCIENCE ALLIANCE
+<img width="1439" alt="スクリーンショット 2021-06-30 15 15 08" src="https://user-images.githubusercontent.com/77427889/123910866-040a6f00-d9b6-11eb-8ac7-606b12dfa71f.png">  
 
 * 大学院生や大学生など、学生研究者のためのSNSアプリケーションです。
 
