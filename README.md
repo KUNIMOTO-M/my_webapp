@@ -7,7 +7,10 @@
 
 # URL
 
- (https://blogs.alliance-science.com/)
+ https://blogs.alliance-science.com
+ ゲストログイン
+ email puhiza409@uma3.be
+ pass  testuser
 
  # 目指した課題解決
 
