@@ -11,7 +11,8 @@
 
  ゲストログイン  
  email: puhiza409@uma3.be  
- password:  testuser
+ password:  testuser  
+ (ゲストユーザーのプロフィールには、私自身の研究を掲載しています)
 
  # 目指した課題解決
 

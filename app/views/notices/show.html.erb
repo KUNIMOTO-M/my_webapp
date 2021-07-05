@@ -41,13 +41,13 @@
           <% if @user.id == current_user.id %>
           <% else %>
             <% if @isRoom == true %>
-              <p><a class="btn btn-primary" href="/rooms/<%= @roomId %>">チャットへ</a>
+              <p><a class="btn btn-primary" style="color:#fff;" href="/rooms/<%= @roomId %>">チャットへ</a>
             <% else %>
               <%= form_for @room do |f| %>
                 <%= fields_for @entry do |e| %>
                   <%= e.hidden_field :user_id, :value=> @user.id %>
                 <% end %>
-                <%= f.submit "チャットを始める" , class: "btn btn-primary"%>
+                <%= f.submit "チャットを始める" ,style: "color:#fff;", class: "btn btn-primary"%>
               <% end %>
             <% end %>
           <% end %>
