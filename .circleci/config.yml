@@ -33,6 +33,13 @@ jobs:
           name: Rubocop
           command: bundle exec rubocop
       - run:
+          name: Ec2
+          command: |
+            touch .env
+            echo SSH_PORT=$SSH_PORT > .env
+            echo SSH_USER=$SSH_USER > .env
+            echo SSH_HOST=$SSH_HOST > .env
+      - run:
           name: yarn Install
           command: yarn install
       - run: bundle exec bin/webpack
@@ -53,3 +60,20 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - 22:17:f8:88:0a:08:a8:51:6b:68:15:78:b8:f8:40:61
+      - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "my_webapp/deploy-me.sh"
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
