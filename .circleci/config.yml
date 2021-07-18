@@ -69,7 +69,7 @@ jobs:
           fingerprints:
             - 22:17:f8:88:0a:08:a8:51:6b:68:15:78:b8:f8:40:61
       - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "/my_webapp/deploy-me.sh"
-            no_output_timeout: 50m
+          no_output_timeout: 50m
 workflows:
   version: 2
   deploy:
