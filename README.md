@@ -67,7 +67,7 @@
 * puma
 
 ## インフラ構成図
-![aws drawio](https://user-images.githubusercontent.com/77427889/123908321-3a45ef80-d9b2-11eb-9553-d3b475216b5f.png)
+![aws drawio](https://user-images.githubusercontent.com/77427889/126065989-0f48c30d-54c7-4644-b261-05f69b3ea48f.png)
 
 ## ER図
 <img width="850" alt="スクリーンショット 2021-06-30 17 40 39" src="https://user-images.githubusercontent.com/77427889/123930152-6d947880-d9ca-11eb-95f9-cb0cfceb8f30.png">
