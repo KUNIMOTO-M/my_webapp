@@ -59,7 +59,7 @@
 
 ## インフラ・開発環境
 * Git/Github (pull requestを利用)
-* Docker/Docker-compose (開発・テスト)
+* Docker/Docker-compose (開発・テスト・本番)
 * AWS (EC2/ RDS(MySQL)/ VPC / IAM / Route53 / ACM / ELB /) 
 * CircleCI
 * MySQL 5.7

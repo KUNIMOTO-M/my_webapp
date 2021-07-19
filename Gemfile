@@ -31,6 +31,9 @@ gem 'sass-rails', '6'
 gem 'turbolinks', '5.2.0'
 gem 'webpacker'
 gem 'will_paginate', '3.1.8'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

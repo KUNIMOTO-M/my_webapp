@@ -48,7 +48,7 @@
 
 </div>
   <v-dialog v-model="dialogPostFlag" width="800" transition="dialog-bottom-transition"
-        max-width="600"> <!-- 説明 3.18 -->
+        max-width="600"> 
     <v-card>
       <v-card-title class="headline red lighten-3 white--text" primary-title>
         Create Notice

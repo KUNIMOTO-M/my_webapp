@@ -22,31 +22,25 @@
 </template>
 
 <script>
-// axios と rails-ujsのメソッドインポート
 import axios from 'axios'
 
 export default {
-  // propsでrailsのviewからデータを受け取る
   props: ['micropostId'],
   data() {
     return {
       likeList: [],
-      userId: null  // いいね一覧を格納するための変数　{ id: 1, user_id: 1, post_id: 1 } がArrayで入る
+      userId: null 
     }
   },
-  // 算出プロパティ ここではlikeListが変更される度に、count、isLiked が再構築される (watchで監視するようにしても良いかも)
   computed: {
-    // いいね数を返す
     count() {
       return this.likeList.length
     },
-    // ログインユーザが既にいいねしているかを判定する
     isLiked() {
       if (this.likeList.length === 0) { return false }
       return Boolean(this.findLikeId())
     }
   },
-  // Vueインスタンスの作成・初期化直後に実行される
   created: function() {
     this.fetchLikeByPostId().then(result => {
       this.likeList = result
@@ -57,13 +51,11 @@ export default {
     })
   },
   methods: {
-    // rails側のindexアクションにリクエストするメソッド
     fetchLikeByPostId: async function() {
       const res = await axios.get(`/like/?micropost_id=${this.micropostId}`)
       if (res.status !== 200) { process.exit() }
       return res.data
     },
-    // rails側のcreateアクションにリクエストするメソッド
     registerLike: async function() {
       const res = await axios.post('/like', { micropost_id: this.micropostId })
       if (res.status !== 201) { process.exit() }
@@ -71,14 +63,12 @@ export default {
         this.likeList = result
       })
     },
-    // rails側のdestroyアクションにリクエストするメソッド
     deleteLike: async function() {
       const likeId = this.findLikeId()
       const res = await axios.delete(`/like/${likeId}`)
       if (res.status !== 200) { process.exit() }
       this.likeList = this.likeList.filter(n => n.id !== likeId)
     },
-    // ログインユーザがいいねしているlikeモデルのidを返す
     findLikeId: function() {
       const like = this.likeList.find((like) => {
         return (like.user_id === this.userId)
