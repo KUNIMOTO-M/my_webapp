@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: %i[twitter facebook]
+         :confirmable, :omniauthable, omniauth_providers: %i[twitter facebook google_oauth2]
   mount_uploader :image, ImageUploader
   has_many :active_relationships, class_name: 'Relationship',
                                   foreign_key: 'follower_id',
@@ -48,5 +48,12 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
   end
 end

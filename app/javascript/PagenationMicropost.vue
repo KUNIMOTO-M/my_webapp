@@ -8,7 +8,7 @@
       </v-btn>
     </div> 
 
-    <v-dialog v-model="dialogPostFlag" width="800" persistent> <!-- 説明 3.18 -->
+    <v-dialog v-model="dialogPostFlag" width="800" persistent>
             <v-card>
               <v-card-title class="headline primary lighten-3 white--text" primary-title>
                 Create Micropost
