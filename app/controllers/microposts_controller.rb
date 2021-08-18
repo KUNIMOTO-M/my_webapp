@@ -18,7 +18,7 @@ class MicropostsController < ApplicationController
     if @micropost.save
       flash[:notice] = 'マイクロポストを投稿しました'
     else
-      flash[:danger] = '投稿できませんでした'
+      flash[:danger] = '投稿できませんでした。'
     end
     redirect_to microposts_url
   end
